@@ -1,0 +1,24 @@
+---
+nginx_packages:
+  - name: nginx-full
+    state: present
+  - name: nginx-light
+    state: absent
+vhosts:
+  - name: default
+    configuration:
+      connection:
+        non-ssl: True
+        non-ssl-port: 80
+        ssl: True
+        ssl-port: 443
+        ssl-certificate-path: "snippets/snakeoil.conf"
+      root-directory: "/var/www/html"
+      index-files: "index.html index.htm index.nginx-debian.html"
+      server-name: "_"
+      locations:
+        name: "/"
+        config:
+          "try_files $uri $uri/ =404"
+          "expires 1h"
+          "add_header Cache-Control 'public'"

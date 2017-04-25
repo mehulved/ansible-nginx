@@ -1,0 +1,21 @@
+---
+  - name: Manage packages
+    apt:
+      name: "{{ item.name }}"
+      state: "{{ item.state }}"
+    with_items: "{{ nginx_packages }}"
+
+  - name: Copy vhost templates
+    template:
+      src: "vhosts/{{ item.name }}.j2"
+      dest: "/etc/nginx/sites-available/{{ item.name }}"
+    with_items: vhosts
+    notify: restart nginx
+
+  - name: Manage vhosts
+    file:
+      src: "/etc/nginx/sites-available/{{ item.name }}"
+      dest: "/etc/nginx/sites-enabled/{{ item.name }}"
+      state: "link"
+    with_items: vhosts
+    notify: restart nginx

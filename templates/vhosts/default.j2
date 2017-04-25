@@ -1,0 +1,27 @@
+server {
+{% for configuration in item.configuration %}
+{% for connection in configuration.connection %}
+        {% if connection.non-ssl == True %}
+        listen {{ connection.non-ssl-port }} default_server;
+        listen [::]:{{ connection.non-ssl-port }} default_server;
+        {% endif %}
+
+        {% if connection.ssl == True %}
+        listen {{ connection.ssl-port }} ssl default_server;
+        listen [::]:{{ connection.ssl-port }} ssl default_server;
+        include {{ connection.ssl-certificate-path }};
+        {% endif %}
+{% endfor %}
+
+        root {{ configuration.root-directory }};
+        index {{ configuration.index-files }};
+        server_name {{ configuration.server-name }};
+{% for location in configuration.locations %}
+        location {% location.name %} {
+                {% for location_config in location.configuration %}
+                {{ location_config }}
+                {% endfor %}
+        }
+{% endfor %}
+{% endfor %}
+}
