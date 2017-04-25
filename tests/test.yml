@@ -1,5 +1,5 @@
-
-sts: localhost
+---
+- hosts: localhost
   remote_user: root
   roles:
     - nginx
