@@ -7,7 +7,7 @@
 
   - name: Copy vhost templates
     template:
-      src: "vhosts/{{ item.name }}.j2"
+      src: "vhosts/site.j2"
       dest: "/etc/nginx/sites-available/{{ item.name }}"
     with_items: vhosts
     notify: restart nginx
