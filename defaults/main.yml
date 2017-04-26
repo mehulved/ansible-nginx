@@ -12,7 +12,7 @@ vhosts:
         non_ssl_port: 80
         ssl: True
         ssl_port: 443
-        ssl_certificate_path: "snippets/snakeoil.conf"
+        ssl_certificate_path: "/etc/nginx/snippets/snakeoil.conf"
       root_directory: "/var/www/html"
       index_files: "index.html index.htm index.nginx-debian.html"
       server_name: "_"
