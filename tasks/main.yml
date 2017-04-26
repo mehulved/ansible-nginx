@@ -17,5 +17,5 @@
       src: "/etc/nginx/sites-available/{{ item.name }}"
       dest: "/etc/nginx/sites-enabled/{{ item.name }}"
       state: "link"
-    with_items: vhosts
+    with_items: "{{ vhosts }}"
     notify: restart nginx
