@@ -8,14 +8,14 @@ vhosts:
   - name: default
     configuration:
       connection:
-        non-ssl: True
-        non-ssl-port: 80
+        non_ssl: True
+        non_ssl_port: 80
         ssl: True
-        ssl-port: 443
-        ssl-certificate-path: "snippets/snakeoil.conf"
-      root-directory: "/var/www/html"
-      index-files: "index.html index.htm index.nginx-debian.html"
-      server-name: "_"
+        ssl_port: 443
+        ssl_certificate_path: "snippets/snakeoil.conf"
+      root_directory: "/var/www/html"
+      index_files: "index.html index.htm index.nginx-debian.html"
+      server_name: "_"
       locations:
         - name: "/"
           config:

@@ -1,18 +1,18 @@
 server {
-        {% if item.configuration.connection.non-ssl == True %}
-        listen {{ item.configuration.connection.non-ssl-port }} default_server;
-        listen [::]:{{ item.configuration.connection.non-ssl-port }} default_server;
+        {% if item.configuration.connection.non_ssl == True %}
+        listen {{ item.configuration.connection.non_ssl_port }} default_server;
+        listen [::]:{{ item.configuration.connection.non_ssl_port }} default_server;
         {% endif %}
 
         {% if item.configuration.connection.ssl == True %}
-        listen {{ item.configuration.connection.ssl-port }} ssl default_server;
-        listen [::]:{{ item.configuration.connection.ssl-port }} ssl default_server;
-        include {{ item.configuration.connection.ssl-certificate-path }};
+        listen {{ item.configuration.connection.ssl_port }} ssl default_server;
+        listen [::]:{{ item.configuration.connection.ssl_port }} ssl default_server;
+        include {{ item.configuration.connection.ssl_certificate_path }};
         {% endif %}
 
-        root {{ item.configuration.configuration.root-directory }};
-        index {{ item.configuration.configuration.index-files }};
-        server_name {{ item.configuration.configuration.server-name }};
+        root {{ item.configuration.configuration.root_directory }};
+        index {{ item.configuration.configuration.index_files }};
+        server_name {{ item.configuration.configuration.server_name }};
 {% for location in item.configuration.configuration.locations %}
         location {{ location.name }} {
         {% for location_config in location.configuration %}
