@@ -16,8 +16,8 @@ server {
         root {{ configuration.root-directory }};
         index {{ configuration.index-files }};
         server_name {{ configuration.server-name }};
-{% for location in configuration.locations %}
-        location {% location.name %} {
+  {% for location in configuration.locations %}
+        location {{ location.name }} {
                 {% for location_config in location.configuration %}
                 {{ location_config }}
                 {% endfor %}
