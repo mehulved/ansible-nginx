@@ -19,3 +19,6 @@
       state: "link"
     with_items: "{{ vhosts }}"
     notify: restart nginx
+
+  - name: Verify nginx configuration
+    command: "nginx -t"
