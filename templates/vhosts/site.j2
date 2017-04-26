@@ -16,7 +16,7 @@ server {
 {% for location in item.configuration.locations %}
         location {{ location.name }} {
         {% for location_config in location.config %}
-                {{ location_config }}
+                {{ location_config }};
         {% endfor %}
         }
 {% endfor %}
