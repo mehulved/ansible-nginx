@@ -9,7 +9,7 @@
     template:
       src: "vhosts/site.j2"
       dest: "/etc/nginx/sites-available/{{ item.name }}"
-    with_items: vhosts
+    with_items: " {{ vhosts }}"
     notify: restart nginx
 
   - name: Manage vhosts
