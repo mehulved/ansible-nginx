@@ -10,10 +10,10 @@ server {
         include {{ item.configuration.connection.ssl_certificate_path }};
         {% endif %}
 
-        root {{ item.configuration.configuration.root_directory }};
-        index {{ item.configuration.configuration.index_files }};
-        server_name {{ item.configuration.configuration.server_name }};
-{% for location in item.configuration.configuration.locations %}
+        root {{ item.configuration.root_directory }};
+        index {{ item.configurationindex_files }};
+        server_name {{ item.configuration.server_name }};
+{% for location in item.configuration.locations %}
         location {{ location.name }} {
         {% for location_config in location.configuration %}
                 {{ location_config }}
