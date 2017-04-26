@@ -10,7 +10,7 @@ vhosts:
       connection:
         non_ssl: True
         non_ssl_port: 80
-        ssl: True
+        ssl: False
         ssl_port: 443
         ssl_certificate_path: "/etc/nginx/snippets/snakeoil.conf"
       root_directory: "/var/www/html"
