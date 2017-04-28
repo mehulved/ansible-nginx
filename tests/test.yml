@@ -3,3 +3,33 @@
   remote_user: root
   roles:
     - ansible-nginx
+
+- hosts: localhost
+  remote_user: root
+  tasks:
+    - name: Check nginx response for default web page
+      uri:
+        url: "http://localhost:80/"
+      register: nginx_default_response
+
+    - name: Check nginx response for default https web page
+      uri:
+        url: "http://localhost:443/"
+      register: nginx_default_https_response
+      ignore_errors: yes
+
+    - name: Ensure that nginx is listening only on port 80 and not on port 443
+      assert:
+        that:
+          - nginx_default_response.status == 200
+          - nginx_default_https_response.status == -1
+
+    - name: Ensure that cache control header is set to public
+      assert:
+        that:
+          - "'public' in nginx_default_response.cache_control"
+
+    - name: Ensure that expires header is set
+      assert:
+        that:
+           - "'expires' in nginx_default_response"
